@@ -1,0 +1,9 @@
+[project]
+name = "drawio-nl-agent"
+version = "3.0.0"
+description = "Create and edit draw.io diagrams through natural language via an MCP agent"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
