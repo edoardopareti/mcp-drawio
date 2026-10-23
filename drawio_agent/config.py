@@ -43,7 +43,8 @@ def load_config() -> Config:
     load_dotenv(PROJECT_ROOT / ".env")
     load_dotenv()  # also honour a .env in the current working directory
     env = os.environ.get
-    import_dirs = [Path(p).expanduser() for p in (env("DRAWIO_IMPORT_DIRS") or "").split(os.pathsep) if p.strip()]
+    import_dirs = [
+        Path(p).expanduser() for p in (env("DRAWIO_IMPORT_DIRS") or "").split(os.pathsep) if p.strip()]
     return Config(
         llm_provider=(env("LLM_PROVIDER") or "azure").strip().lower(),
         azure_endpoint=env("AZURE_OPENAI_ENDPOINT") or None,

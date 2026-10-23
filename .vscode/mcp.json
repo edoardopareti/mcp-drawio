@@ -2,7 +2,7 @@
   "servers": {
     "drawio-diagrams": {
       "type": "stdio",
-      "command": "${workspaceFolder}/.venv/bin/python",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
       "args": ["-m", "drawio_agent.server", "--transport", "stdio"],
       "cwd": "${workspaceFolder}"
     }

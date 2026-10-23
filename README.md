@@ -1,6 +1,9 @@
 # draw.io natural-language MCP agent
 
-Create **and keep editing** draw.io diagrams by chatting with an agent. The agent is an MCP client. It talks to a local MCP server that owns the diagram state, so every message builds on the current diagram.
+Create and edit continuously draw.io diagrams by chatting with an AI agent.
+
+The agent is an MCP client.
+It is designed to talk to a **local** MCP server that owns the diagram state, so every message builds on the current diagram.
 
 ```text
  you> draw the architecture of my NIS2 checker ...
@@ -27,7 +30,7 @@ Create **and keep editing** draw.io diagrams by chatting with an agent. The agen
 * **Each turn**, the agent gives the model the active diagram's current content. This lets you refer to things like "the API" or "that arrow".
 * **Errors**, such as an edge pointing to a node that doesn't exist, go back to the model. It then corrects the call and retries by itself.
 * **Automatic layout** is layered, and groups are laid out as non-overlapping blocks. Imported `.drawio` files keep their original positions (`manual` mode) until you ask to rearrange them.
-* **Everything runs locally.** The only network call goes to the LLM endpoint you configure, which can be Azure OpenAI, OpenAI, or a local OpenAI-compatible server. No public draw.io service is contacted.
+* **Everything runs locally.** The only network call goes to the LLM endpoint you configure, which can be Azure OpenAI, OpenAI, or a local OpenAI-compatible server. Currently, no public draw.io service is contacted.
 
 ## Setup
 
@@ -108,9 +111,9 @@ If you change a diagram by hand in draw.io, use `/import diagrams/<name>.drawio 
 
 ## Using the MCP server from other clients
 
-The server works without the agent too. You can use it from VS Code GitHub Copilot (agent mode), Claude Desktop or the MCP Inspector, for example.
+The MCP server works without the agent too. You can use it from VS Code GitHub Copilot (agent mode), Claude Desktop or the MCP Inspector, for example.
 
-* **stdio**: `python -m drawio_agent.server`. A ready-made `.vscode/mcp.json` is included.
+* **stdio**: `python -m drawio_agent.server`. A ready-made `.vscode/mcp.json` is included. You can for instance connect Github Copilot sessions to it so it can be used as a provider of utilities to edit drawio files.
 * **HTTP**: `python -m drawio_agent.server --transport streamable-http --port 8000`, with the endpoint `http://127.0.0.1:8000/mcp`. To point the agent at it, set `MCP_SERVER_URL=http://127.0.0.1:8000/mcp`.
 
 ### Tools

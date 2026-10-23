@@ -1,0 +1,39 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "Python: drawio_agent.agent",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "drawio_agent.agent",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "purpose": [
+                "debug-in-terminal"
+            ]
+        },
+
+        {
+            "name": "Python: drawio_agent.agent with diagram",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "drawio_agent.agent",
+            "args": [
+                "--diagram",
+                "${workspaceFolder}/diagrams/simple_web_application.drawio"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "purpose": [
+                "debug-in-terminal"
+            ]
+        },
+
+    ]
+}

@@ -66,6 +66,7 @@ def to_value(label: str) -> str:
 
 
 def render_xml(diagram: Diagram, geometry: Geometry | None = None) -> str:
+    """Render the diagram model to an uncompressed, editable draw.io (mxGraph) file."""
     geo = geometry or compute_geometry(diagram)
     mxfile = ET.Element("mxfile", host="drawio-nl-agent", agent="drawio-nl-agent", type="device")
     page = ET.SubElement(mxfile, "diagram", id=f"page-{diagram.name}", name=diagram.title or diagram.name)

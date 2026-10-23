@@ -1,4 +1,5 @@
-"""MCP server exposing stateful draw.io diagram editing tools.
+"""
+MCP server exposing stateful draw.io diagram editing tools.
 
 Run:  python -m drawio_agent.server                         (stdio, used by the agent and by VS Code)
       python -m drawio_agent.server --transport streamable-http --port 8000
@@ -131,9 +132,14 @@ def undo(diagram: str) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="draw.io MCP server")
-    parser.add_argument("--transport", choices=["stdio", "streamable-http"], default="stdio")
-    parser.add_argument("--host", default="127.0.0.1")
-    parser.add_argument("--port", type=int, default=8000)
+    parser.add_argument(
+        "--transport",
+        choices=["stdio", "streamable-http"],
+        default="stdio")
+    parser.add_argument(
+        "--host", default="127.0.0.1")
+    parser.add_argument(
+        "--port", type=int, default=8000)
     args = parser.parse_args()
     if args.transport == "streamable-http":
         mcp.settings.host = args.host

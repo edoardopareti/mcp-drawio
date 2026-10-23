@@ -50,7 +50,10 @@ ToolCaller = Callable[[str, dict], Awaitable[tuple[str, bool]]]
 
 # ---------------- MCP schema -> OpenAI tool ----------------
 def inline_refs(schema: dict) -> dict:
-    """Inline local $ref/$defs so the schema works with every OpenAI-compatible endpoint."""
+    """
+    Inline local $ref/$defs so the schema
+    works with every OpenAI-compatible endpoint.
+    """
     defs = schema.get("$defs") or schema.get("definitions") or {}
 
     def resolve(node: Any, depth: int = 0) -> Any:
@@ -73,9 +76,17 @@ def inline_refs(schema: dict) -> dict:
     return out
 
 
-def mcp_tool_to_openai(name: str, description: str | None, input_schema: dict) -> dict:
+def mcp_tool_to_openai(
+        name: str,
+        description: str | None,
+        input_schema: dict) -> dict:
+    """
+    Convert an MCP tool description to an OpenAI-compatible function spec.
+    """
     return {"type": "function", "function": {
-        "name": name, "description": (description or "").strip()[:1024], "parameters": inline_refs(input_schema or {}),
+        "name": name,
+        "description": (description or "").strip()[:1024],
+        "parameters": inline_refs(input_schema or {}),
     }}
 
 
@@ -117,7 +128,11 @@ class ChatAgent:
             self.history = self.history[user_idx[-self.max_turns_kept]:]
 
     def _create(self, messages: list[dict]):
-        kwargs: dict[str, Any] = {"model": self.model, "messages": messages, "tools": self.tools, "tool_choice": "auto"}
+        kwargs: dict[str, Any] = {
+            "model": self.model,
+            "messages": messages,
+            "tools": self.tools,
+            "tool_choice": "auto"}
         if self.temperature is not None:
             kwargs["temperature"] = self.temperature
         return self.llm.chat.completions.create(**kwargs)
@@ -127,15 +142,23 @@ class ChatAgent:
         self.history.append({"role": "user", "content": text})
         try:
             for _ in range(self.max_tool_rounds):
-                messages = [{"role": "system", "content": SYSTEM_PROMPT},
-                            {"role": "system", "content": await self._context()}] + self.history
+                messages = [
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "system", "content": await self._context()}
+                    ] + self.history
                 response = await asyncio.to_thread(self._create, messages)
                 msg = response.choices[0].message
                 tool_calls = list(msg.tool_calls or [])
                 assistant: dict[str, Any] = {"role": "assistant", "content": msg.content}
                 if tool_calls:
-                    assistant["tool_calls"] = [{"id": tc.id, "type": "function", "function": {
-                        "name": tc.function.name, "arguments": tc.function.arguments or "{}"}} for tc in tool_calls]
+                    assistant["tool_calls"] = [
+                        {"id": tc.id,
+                         "type": "function",
+                         "function": {
+                             "name": tc.function.name,
+                             "arguments": tc.function.arguments or "{}"
+                             }
+                         } for tc in tool_calls]
                 self.history.append(assistant)
                 if not tool_calls:
                     self._trim()
@@ -157,8 +180,10 @@ class ChatAgent:
                             self._track_active(name, result)
                     if self.on_tool:
                         self.on_tool(name, args, result, is_error)
-                    self.history.append({"role": "tool", "tool_call_id": tc.id,
-                                         "content": ("ERROR: " + result) if is_error else result})
+                    self.history.append(
+                        {"role": "tool",
+                         "tool_call_id": tc.id,
+                         "content": ("ERROR: " + result) if is_error else result})
             self._trim()
             return f"Stopped after {self.max_tool_rounds} tool rounds. The changes made so far are saved; tell me how to continue."
         except Exception:
@@ -172,9 +197,18 @@ class ChatAgent:
 # ---------------- MCP connection ----------------
 @asynccontextmanager
 async def connect_mcp(cfg: Config):
+    """
+    Connect to the MCP server,
+    either via a URL or by spawning a local stdio server
+    """
     from mcp import ClientSession, StdioServerParameters
 
     if cfg.mcp_server_url:
+        # Connect to an existing MCP server via streamable HTTP.
+        # NOTE: This MCPP server must expose the same tools
+        # as the local stdio server, otherwise the agent will fail.
+        # So, currently, the agent only works with the local stdio server,
+        # but not with official MCP servers provided by draw.io.
         try:
             from mcp.client.streamable_http import streamablehttp_client as http_client
         except ImportError:  # newer SDK naming
@@ -185,12 +219,15 @@ async def connect_mcp(cfg: Config):
                 await session.initialize()
                 yield session
     else:
+        # Spawn a local MCP server and connect to it via stdio.
         from mcp.client.stdio import stdio_client
 
         params = StdioServerParameters(
             command=sys.executable,
             args=["-m", "drawio_agent.server", "--transport", "stdio"],
-            env={**os.environ, "PYTHONPATH": str(PROJECT_ROOT), "DRAWIO_WORKSPACE": str(cfg.workspace.resolve())},
+            env={**os.environ,
+                 "PYTHONPATH": str(PROJECT_ROOT),
+                 "DRAWIO_WORKSPACE": str(cfg.workspace.resolve())},
             cwd=str(PROJECT_ROOT),
         )
         async with stdio_client(params) as (read, write):
@@ -200,6 +237,9 @@ async def connect_mcp(cfg: Config):
 
 
 def make_tool_caller(session) -> ToolCaller:
+    """
+    Return a function that calls an MCP tool and returns (result_text, is_error).
+    """
     async def call(name: str, args: dict) -> tuple[str, bool]:
         try:
             result = await session.call_tool(name, args)
@@ -308,7 +348,12 @@ async def _command(agent: ChatAgent, line: str) -> bool:
 
 
 async def repl(agent: ChatAgent, initial: str | None) -> None:
+    """
+    Read-eval-print loop for the agent.
+    """
+
     print("draw.io natural-language agent. Type /help for commands, /exit to quit.")
+
     if initial:
         await _command(agent, f"/open {initial}")
     while True:
@@ -336,20 +381,37 @@ async def repl(agent: ChatAgent, initial: str | None) -> None:
 
 
 async def amain() -> None:
-    parser = argparse.ArgumentParser(description="Create and edit draw.io diagrams in natural language")
-    parser.add_argument("--diagram", help="diagram to open at start-up")
+    """
+    Main entry point for the draw.io agent.
+    """
+
+    parser = argparse.ArgumentParser(
+        description="Create and edit draw.io diagrams in natural language")
+
+    parser.add_argument(
+        "--diagram", help="diagram to open at start-up")
+
     args = parser.parse_args()
 
     from .llm import create_llm_client
 
-    cfg = load_config()
-    llm, model = create_llm_client(cfg)
+    cfg = load_config()  # Read configuration from .env and environment variables
+    llm, model = create_llm_client(cfg)  # Create an LLM client based on the configuration
     async with connect_mcp(cfg) as session:
-        listed = await session.list_tools()
-        tools = [mcp_tool_to_openai(t.name, t.description, t.inputSchema) for t in listed.tools]
-        agent = ChatAgent(llm, model, tools, make_tool_caller(session), temperature=cfg.temperature,
-                          max_tool_rounds=cfg.max_tool_rounds, on_tool=_print_tool)
-        print(f"Connected to MCP server ({len(tools)} tools). Workspace: {cfg.workspace.resolve()}")
+        listed = await session.list_tools()  # Get the list of available tools from the MCP server
+        tools = [
+            mcp_tool_to_openai(
+                t.name, t.description, t.inputSchema) for t in listed.tools]  # Convert MCP tools to OpenAI-compatible function specifications
+        if not tools:
+            print("No tools available from the MCP server. Check the server logs.")
+            return
+        agent = ChatAgent(
+            llm, model,
+            tools, make_tool_caller(session),
+            temperature=cfg.temperature, max_tool_rounds=cfg.max_tool_rounds,
+            on_tool=_print_tool)
+        print(
+            f"Connected to MCP server ({len(tools)} tools). Workspace: {cfg.workspace.resolve()}")
         await repl(agent, args.diagram)
 
 
