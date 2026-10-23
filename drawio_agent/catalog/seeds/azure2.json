@@ -49,6 +49,20 @@
    ]
   },
   {
+   "name": "Static Web Apps",
+   "category": "Web",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/preview/Static_Apps.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "static web",
+    "swa",
+    "frontend",
+    "ui",
+    "interface"
+   ]
+  },
+  {
    "name": "App Service Plans",
    "category": "App Services",
    "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/app_services/App_Service_Plans.svg;",
