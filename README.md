@@ -1,6 +1,15 @@
 # draw.io natural-language MCP agent
 
+## Introduction
 Create and continuously edit draw.io diagrams by chatting with an AI agent.
+
+You: "Draw a use case diagram for a simple e-commerce application"
+![alt text](docs/images/image.png)
+
+You: "Now create a deployment diagram for this simple e-commerce app"
+![alt text](docs/images/image2.png)
+
+## Description
 The agent is an MCP client that talks to a **local** MCP server. The server owns the diagram state, so every message builds on the current diagram.
 
 For instance, you can perform an interaction like the following
@@ -22,6 +31,7 @@ Currently supported notations:
   - ArchiMate 3.2
   - UML 2.5
   - Azure cloud architecture
+
 It then uses only the shapes, icons and relationship types pertaining to that notation. These come from a **shape catalogue** stemming from the following sources:
   - draw.io's own libraries
   - draw.io library files
