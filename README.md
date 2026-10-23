@@ -3,6 +3,12 @@
 Create and continuously edit draw.io diagrams by chatting with an AI agent.
 The agent is an MCP client that talks to a **local** MCP server. The server owns the diagram state, so every message builds on the current diagram.
 
+For instance, you can perform an interaction like the following
+
+```bash
+python -m drawio_agent.agent
+```
+
 ```text
  you> draw the architecture of my NIS2 checker ...
  you> put the specialist agents inside an "Analysis" boundary
@@ -11,13 +17,20 @@ The agent is an MCP client that talks to a **local** MCP server. The server owns
  you> switch to top-to-bottom
 ```
 
-The agent can also work in a **notation**: ArchiMate 3.2, UML 2.5 or Azure architecture. It then uses only the shapes, icons and relationship types of that notation. These come from a **shape catalogue** that you can build from draw.io's own libraries, from draw.io library files and from your existing diagrams.
+The agent can also work in a specified **notation**.
+Currently supported notations:
+  - ArchiMate 3.2
+  - UML 2.5
+  - Azure cloud architecture
+It then uses only the shapes, icons and relationship types pertaining to that notation. These come from a **shape catalogue** stemming from the following sources:
+  - draw.io's own libraries
+  - draw.io library files
+  - your existing diagrams
 
 ```bash
 python -m drawio_agent.agent --notation archimate
 python -m drawio_agent.agent --notation uml
 python -m drawio_agent.agent --notation azure
-python -m drawio_agent.agent                      # generic mode, same behaviour as v3
 ```
 
 ## How it works
@@ -70,6 +83,7 @@ python build_catalog.py --download archimate3 azure2 uml25
 ```
 
 Without this step the agent uses the bundled seed shapes. There are about 140 of them, covering the common ArchiMate, UML and Azure elements.
+Local bundled seed shapes can be added editing drawio_agent/catalog/seeds/*.json catalog files.
 
 ## Run
 
@@ -81,7 +95,7 @@ The agent starts the MCP server automatically as a subprocess over stdio.
 
 ### Example sessions
 
-Generic mode, unchanged from v3:
+Generic mode:
 
 ```text
 [no diagram] you> Create an architecture diagram called nis2_arch: a user uses a web app, which calls an
@@ -188,7 +202,7 @@ Nodes and groups reference shapes by **key**, e.g. `archimate3.application_compo
 
 At runtime, the server loads the bundled **seed** shapes plus the catalogue file `SHAPE_CATALOG` (default `./catalog/shapes.json`). Entries in the file override seeds with the same key.
 
-### Building it
+### Building the catalogue
 
 ```bash
 python build_catalog.py --help
