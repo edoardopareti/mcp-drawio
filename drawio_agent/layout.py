@@ -1,23 +1,16 @@
-"""Deterministic layout: layered (Sugiyama-style) placement with groups laid out as blocks."""
+"""Deterministic layout: layered (Sugiyama-style) placement, with (nested) groups laid out as blocks.
+
+The engine only needs sizes, which it gets from a StyleResolver, so it works for any shape.
+"""
 from __future__ import annotations
 
 from collections import defaultdict
 from dataclasses import dataclass, field
 
-from .models import Diagram, Node
+from .models import Diagram
+from .styles import StyleResolver
 
-Box = tuple[float, float, float, float]  # x, y, width, height (absolute)
-
-NODE_SIZES: dict[str, tuple[float, float]] = {
-    "actor": (60, 80),
-    "database": (140, 80),
-    "storage": (140, 80),
-    "decision": (150, 90),
-    "document": (160, 70),
-    "queue": (160, 60),
-    "note": (180, 60),
-}
-DEFAULT_SIZE = (170, 64)
+Rect = tuple[float, float, float, float]  # x, y, width, height (absolute)
 
 MARGIN = 40
 TITLE_HEIGHT = 60
@@ -27,19 +20,14 @@ NODE_MAIN_GAP = 90   # gap between layers (along the flow direction)
 NODE_CROSS_GAP = 40  # gap between siblings within a layer
 UNIT_MAIN_GAP = 110
 UNIT_CROSS_GAP = 60
-EMPTY_GROUP_SIZE = (220, 120)
+EMPTY_GROUP_SIZE = (220.0, 120.0)
 
 
 @dataclass
 class Geometry:
-    nodes: dict[str, Box] = field(default_factory=dict)
-    groups: dict[str, Box] = field(default_factory=dict)
-
-
-def node_size(node: Node, use_stored: bool) -> tuple[float, float]:
-    if use_stored and node.width and node.height:
-        return node.width, node.height
-    return NODE_SIZES.get(node.kind, DEFAULT_SIZE)
+    """Absolute rectangles of the drawn shapes (nodes) and containers (groups)."""
+    nodes: dict[str, Rect] = field(default_factory=dict)
+    groups: dict[str, Rect] = field(default_factory=dict)
 
 
 def layered(
@@ -59,23 +47,27 @@ def layered(
         if s != t and s in adj and t in adj and t not in adj[s]:
             adj[s].append(t)
 
-    # Break cycles: drop DFS back edges.
+    # Break cycles: drop DFS back edges (iterative, safe for large diagrams).
     state: dict[str, int] = {}
     dag: dict[str, list[str]] = {i: [] for i in ids}
-
-    def dfs(u: str) -> None:
-        state[u] = 1
-        for v in adj[u]:
+    for root in ids:
+        if state.get(root):
+            continue
+        stack = [(root, iter(adj[root]))]
+        state[root] = 1
+        while stack:
+            u, it = stack[-1]
+            v = next(it, None)
+            if v is None:
+                state[u] = 2
+                stack.pop()
+                continue
             if state.get(v) == 1:
                 continue
             dag[u].append(v)
             if not state.get(v):
-                dfs(v)
-        state[u] = 2
-
-    for i in ids:
-        if not state.get(i):
-            dfs(i)
+                state[v] = 1
+                stack.append((v, iter(adj[v])))
 
     # Longest-path ranking.
     indeg = {i: 0 for i in ids}
@@ -103,11 +95,8 @@ def layered(
             preds[v].append(u)
 
     # Barycenter ordering to reduce crossings.
-    def index_map() -> dict[str, float]:
-        return {n: float(k) for r in ranks for k, n in enumerate(layers[r])}
-
+    pos = {n: float(k) for r in ranks for k, n in enumerate(layers[r])}
     for _ in range(4):
-        pos = index_map()
         for r in ranks[1:]:
             layers[r].sort(key=lambda n: (sum(pos[p] for p in preds[n]) / len(preds[n])) if preds[n] else pos[n])
             pos.update({n: float(k) for k, n in enumerate(layers[r])})
@@ -141,107 +130,143 @@ def layered(
     return positions, size
 
 
-def _origin(diagram: Diagram) -> tuple[float, float]:
-    return MARGIN, MARGIN + (TITLE_HEIGHT if diagram.title else 0)
+class _Containment:
+    """Answers 'which direct child of container C contains element X' for nodes and nested groups."""
+
+    def __init__(self, diagram: Diagram):
+        self.group_ids = {g.id for g in diagram.groups}
+        self.parent: dict[str, str | None] = {}
+        for g in diagram.groups:
+            self.parent[g.id] = g.parent if g.parent in self.group_ids and g.parent != g.id else None
+        for n in diagram.nodes:
+            self.parent[n.id] = n.group if n.group in self.group_ids else None
+        # Defensive: break containment cycles (validation should prevent them).
+        for gid in self.group_ids:
+            seen, cur = {gid}, self.parent[gid]
+            while cur is not None:
+                if cur in seen:
+                    self.parent[gid] = None
+                    break
+                seen.add(cur)
+                cur = self.parent[cur]
+
+    def children(self, container: str | None, order: list[str]) -> list[str]:
+        return [x for x in order if self.parent.get(x, "__none__") == container]
+
+    def unit_in(self, element: str, container: str | None) -> str | None:
+        cur: str | None = element
+        while cur is not None:
+            if self.parent.get(cur) == container:
+                return cur
+            cur = self.parent.get(cur)
+        return None
 
 
-def auto_geometry(diagram: Diagram) -> Geometry:
-    horizontal = diagram.direction == "left-to-right"
-    ox, oy = _origin(diagram)
-    group_ids = [g.id for g in diagram.groups]
-    members: dict[str, list[Node]] = {g: [] for g in group_ids}
-    unit_of: dict[str, str] = {}
-    for n in diagram.nodes:
-        if n.group in members:
-            members[n.group].append(n)
-            unit_of[n.id] = n.group
-        else:
-            unit_of[n.id] = n.id
+class LayoutEngine:
+    def __init__(self, resolver: StyleResolver | None = None):
+        self.resolver = resolver or StyleResolver()
 
-    edge_pairs = [(e.source, e.target) for e in diagram.edges]
+    def compute(self, diagram: Diagram) -> Geometry:
+        return self._auto(diagram) if diagram.layout_mode == "auto" else self._manual(diagram)
 
-    # 1) Lay out each group's members internally.
-    internal: dict[str, dict[str, tuple[float, float]]] = {}
-    unit_sizes: dict[str, tuple[float, float]] = {}
-    for gid in group_ids:
-        mem = members[gid]
-        if not mem:
-            unit_sizes[gid] = EMPTY_GROUP_SIZE
-            internal[gid] = {}
-            continue
-        sizes = {n.id: node_size(n, False) for n in mem}
-        inner_edges = [(s, t) for s, t in edge_pairs if unit_of.get(s) == gid and unit_of.get(t) == gid]
-        pos, (w, h) = layered(sizes, inner_edges, horizontal, NODE_MAIN_GAP, NODE_CROSS_GAP)
-        internal[gid] = pos
-        unit_sizes[gid] = (w + 2 * GROUP_PAD, h + GROUP_HEADER + 2 * GROUP_PAD)
+    @staticmethod
+    def _origin(diagram: Diagram) -> tuple[float, float]:
+        return MARGIN, MARGIN + (TITLE_HEIGHT if diagram.title else 0)
 
-    # 2) Ungrouped nodes are units of their own; order units by first appearance.
-    ordered_units: list[str] = []
-    for n in diagram.nodes:
-        u = unit_of[n.id]
-        if u not in ordered_units:
-            ordered_units.append(u)
-        if u == n.id:
-            unit_sizes[u] = node_size(n, False)
-    for gid in group_ids:
-        if gid not in ordered_units:
-            ordered_units.append(gid)
+    # ---------------- automatic ----------------
+    def _auto(self, diagram: Diagram) -> Geometry:
+        horizontal = diagram.direction == "left-to-right"
+        tree = _Containment(diagram)
+        nodes = diagram.node_map()
+        order = [n.id for n in diagram.nodes] + [g.id for g in diagram.groups]
+        edge_pairs = [(e.source, e.target) for e in diagram.edges]
+        layout_box = {n.id: self.resolver.node_layout_box(n) for n in diagram.nodes}
 
-    meta_edges = []
-    for s, t in edge_pairs:
-        us, ut = unit_of.get(s), unit_of.get(t)
-        if us and ut and us != ut:
-            meta_edges.append((us, ut))
+        sizes: dict[str, tuple[float, float]] = {}
+        local: dict[str, dict[str, tuple[float, float]]] = {}  # container -> child -> offset
 
-    outer, _ = layered({u: unit_sizes[u] for u in ordered_units}, meta_edges, horizontal, UNIT_MAIN_GAP, UNIT_CROSS_GAP)
+        def layout_container(container: str | None) -> tuple[float, float]:
+            children = tree.children(container, order)
+            for child in children:
+                if child in tree.group_ids:
+                    w, h = layout_container(child)
+                    sizes[child] = (w + 2 * GROUP_PAD, h + GROUP_HEADER + 2 * GROUP_PAD) if w else EMPTY_GROUP_SIZE
+                else:
+                    box = layout_box[child]
+                    sizes[child] = (box.width, box.height)
+            meta = []
+            for s, t in edge_pairs:
+                us, ut = tree.unit_in(s, container), tree.unit_in(t, container)
+                if us and ut and us != ut:
+                    meta.append((us, ut))
+            nested = container is not None
+            positions, size = layered({c: sizes[c] for c in children}, meta, horizontal,
+                                      NODE_MAIN_GAP if nested else UNIT_MAIN_GAP,
+                                      NODE_CROSS_GAP if nested else UNIT_CROSS_GAP)
+            local[container or ""] = positions
+            return size
 
-    geo = Geometry()
-    nodes_by_id = {n.id: n for n in diagram.nodes}
-    for u, (ux, uy) in outer.items():
-        ax, ay = ox + ux, oy + uy
-        if u in members:
-            w, h = unit_sizes[u]
-            geo.groups[u] = (ax, ay, w, h)
-            for nid, (ix, iy) in internal[u].items():
-                nw, nh = node_size(nodes_by_id[nid], False)
-                geo.nodes[nid] = (ax + GROUP_PAD + ix, ay + GROUP_HEADER + GROUP_PAD + iy, nw, nh)
-        else:
-            nw, nh = unit_sizes[u]
-            geo.nodes[u] = (ax, ay, nw, nh)
-    return geo
+        layout_container(None)
+
+        geo = Geometry()
+        ox, oy = self._origin(diagram)
+
+        def place(container: str | None, ax: float, ay: float) -> None:
+            for child, (cx, cy) in local[container or ""].items():
+                x, y = ax + cx, ay + cy
+                if child in tree.group_ids:
+                    geo.groups[child] = (x, y, *sizes[child])
+                    place(child, x + GROUP_PAD, y + GROUP_HEADER + GROUP_PAD)
+                else:
+                    shape = self.resolver.node_shape_box(nodes[child])
+                    lw = sizes[child][0]
+                    geo.nodes[child] = (x + (lw - shape.width) / 2, y, shape.width, shape.height)
+
+        place(None, ox, oy)
+        return geo
+
+    # ---------------- manual ----------------
+    def _manual(self, diagram: Diagram) -> Geometry:
+        """Use stored coordinates; place nodes without coordinates below the existing content."""
+        geo = Geometry()
+        ox, oy = self._origin(diagram)
+        boxes = {n.id: self.resolver.node_shape_box(n) for n in diagram.nodes}
+        placed = [n for n in diagram.nodes if n.x is not None and n.y is not None]
+        bottom = max((n.y + boxes[n.id].height for n in placed), default=oy)
+        cursor_x, row_y = ox, bottom + 80
+        for n in diagram.nodes:
+            box = boxes[n.id]
+            if n.x is not None and n.y is not None:
+                geo.nodes[n.id] = (n.x, n.y, box.width, box.height)
+            else:
+                geo.nodes[n.id] = (cursor_x, row_y, box.width, box.height)
+                cursor_x += self.resolver.node_layout_box(n).width + NODE_CROSS_GAP
+        self._groups_from_members(diagram, geo, ox, row_y + 160)
+        return geo
+
+    @staticmethod
+    def _groups_from_members(diagram: Diagram, geo: Geometry, empty_x: float, empty_y: float) -> None:
+        tree = _Containment(diagram)
+        depth = {}
+        for g in diagram.groups:
+            d, cur = 0, tree.parent[g.id]
+            while cur is not None:
+                d, cur = d + 1, tree.parent[cur]
+            depth[g.id] = d
+        for g in sorted(diagram.groups, key=lambda g: -depth[g.id]):  # innermost first
+            members = [geo.nodes[n.id] for n in diagram.nodes if tree.parent[n.id] == g.id]
+            members += [geo.groups[c.id] for c in diagram.groups if tree.parent[c.id] == g.id and c.id in geo.groups]
+            if not members:
+                geo.groups[g.id] = (empty_x, empty_y, *EMPTY_GROUP_SIZE)
+                empty_x += EMPTY_GROUP_SIZE[0] + UNIT_CROSS_GAP
+                continue
+            x0 = min(b[0] for b in members) - GROUP_PAD
+            y0 = min(b[1] for b in members) - GROUP_PAD - GROUP_HEADER
+            x1 = max(b[0] + b[2] for b in members) + GROUP_PAD
+            y1 = max(b[1] + b[3] for b in members) + GROUP_PAD
+            geo.groups[g.id] = (x0, y0, x1 - x0, y1 - y0)
 
 
-def manual_geometry(diagram: Diagram) -> Geometry:
-    """Use stored coordinates; place nodes without coordinates below the existing content."""
-    geo = Geometry()
-    ox, oy = _origin(diagram)
-    placed = [n for n in diagram.nodes if n.x is not None and n.y is not None]
-    bottom = max((n.y + node_size(n, True)[1] for n in placed), default=oy)
-    cursor_x, row_y = ox, bottom + 80
-    for n in diagram.nodes:
-        w, h = node_size(n, True)
-        if n.x is not None and n.y is not None:
-            geo.nodes[n.id] = (n.x, n.y, w, h)
-        else:
-            geo.nodes[n.id] = (cursor_x, row_y, w, h)
-            cursor_x += w + NODE_CROSS_GAP
-    _groups_from_members(diagram, geo, ox, row_y + 120)
-    return geo
-
-
-def _groups_from_members(diagram: Diagram, geo: Geometry, empty_x: float, empty_y: float) -> None:
-    for g in diagram.groups:
-        boxes = [geo.nodes[n.id] for n in diagram.nodes if n.group == g.id]
-        if not boxes:
-            geo.groups[g.id] = (empty_x, empty_y, *EMPTY_GROUP_SIZE)
-            empty_x += EMPTY_GROUP_SIZE[0] + UNIT_CROSS_GAP
-            continue
-        x0 = min(b[0] for b in boxes) - GROUP_PAD
-        y0 = min(b[1] for b in boxes) - GROUP_PAD - GROUP_HEADER
-        x1 = max(b[0] + b[2] for b in boxes) + GROUP_PAD
-        y1 = max(b[1] + b[3] for b in boxes) + GROUP_PAD
-        geo.groups[g.id] = (x0, y0, x1 - x0, y1 - y0)
-
-
-def compute_geometry(diagram: Diagram) -> Geometry:
-    return auto_geometry(diagram) if diagram.layout_mode == "auto" else manual_geometry(diagram)
+def compute_geometry(diagram: Diagram, resolver: StyleResolver | None = None) -> Geometry:
+    """Backward-compatible functional entry point."""
+    return LayoutEngine(resolver).compute(diagram)

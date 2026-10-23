@@ -1,0 +1,36 @@
+{
+ "library": "archimate_containers",
+ "_comment": "ArchiMate grouping/layer containers, kept separate so they survive when archimate3 is rebuilt from draw.io's sidebar.",
+ "entries": [
+  {
+   "name": "Grouping",
+   "category": "Other",
+   "element_type": "container",
+   "style": "html=1;rounded=0;whiteSpace=wrap;dashed=1;dashPattern=8 4;fillColor=none;strokeColor=#000000;verticalAlign=top;align=left;spacingLeft=8;spacingTop=4;fontStyle=1;container=1;collapsible=0;",
+   "width": 400,
+   "height": 250,
+   "keywords": [
+    "group",
+    "boundary",
+    "layer",
+    "domain",
+    "aggregate"
+   ]
+  },
+  {
+   "name": "Layer Band",
+   "category": "Other",
+   "element_type": "container",
+   "style": "html=1;rounded=0;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#bbbbbb;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;container=1;collapsible=0;",
+   "width": 600,
+   "height": 200,
+   "keywords": [
+    "business layer",
+    "application layer",
+    "technology layer",
+    "band",
+    "lane"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,94 @@
+{
+ "library": "azure_boundaries",
+ "_comment": "Azure boundary containers (region, subscription, resource group, VNet, subnet, ...).",
+ "entries": [
+  {
+   "name": "Region Boundary",
+   "style": "html=1;rounded=0;whiteSpace=wrap;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontStyle=1;fillColor=none;strokeColor=#3C3C3C;dashed=1;dashPattern=8 4;",
+   "keywords": [
+    "region",
+    "location",
+    "geography"
+   ],
+   "category": "Boundaries",
+   "element_type": "container",
+   "width": 420,
+   "height": 260
+  },
+  {
+   "name": "Subscription Boundary",
+   "style": "html=1;rounded=0;whiteSpace=wrap;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontStyle=1;fillColor=#FFFDF4;strokeColor=#D9B300;",
+   "keywords": [
+    "subscription",
+    "tenant"
+   ],
+   "category": "Boundaries",
+   "element_type": "container",
+   "width": 420,
+   "height": 260
+  },
+  {
+   "name": "Resource Group Boundary",
+   "style": "html=1;rounded=0;whiteSpace=wrap;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontStyle=1;fillColor=none;strokeColor=#7F7F7F;dashed=1;",
+   "keywords": [
+    "resource group",
+    "rg"
+   ],
+   "category": "Boundaries",
+   "element_type": "container",
+   "width": 420,
+   "height": 260
+  },
+  {
+   "name": "Virtual Network Boundary",
+   "style": "html=1;rounded=0;whiteSpace=wrap;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontStyle=1;fillColor=#F2F8FD;strokeColor=#0078D4;fontColor=#0078D4;",
+   "keywords": [
+    "vnet",
+    "virtual network",
+    "spoke",
+    "hub"
+   ],
+   "category": "Boundaries",
+   "element_type": "container",
+   "width": 420,
+   "height": 260
+  },
+  {
+   "name": "Subnet Boundary",
+   "style": "html=1;rounded=0;whiteSpace=wrap;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontStyle=1;fillColor=#FFFFFF;strokeColor=#0078D4;dashed=1;fontColor=#0078D4;",
+   "keywords": [
+    "subnet",
+    "snet"
+   ],
+   "category": "Boundaries",
+   "element_type": "container",
+   "width": 420,
+   "height": 260
+  },
+  {
+   "name": "Availability Zone Boundary",
+   "style": "html=1;rounded=0;whiteSpace=wrap;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontStyle=1;fillColor=none;strokeColor=#5E5E5E;dashed=1;dashPattern=2 2;",
+   "keywords": [
+    "zone",
+    "az"
+   ],
+   "category": "Boundaries",
+   "element_type": "container",
+   "width": 420,
+   "height": 260
+  },
+  {
+   "name": "On-premises Boundary",
+   "style": "html=1;rounded=0;whiteSpace=wrap;container=1;collapsible=0;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontStyle=1;fillColor=#F5F5F5;strokeColor=#666666;",
+   "keywords": [
+    "on premises",
+    "datacenter",
+    "corporate network"
+   ],
+   "category": "Boundaries",
+   "element_type": "container",
+   "width": 420,
+   "height": 260
+  }
+ ]
+}

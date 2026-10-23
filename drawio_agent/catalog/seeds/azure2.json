@@ -1,0 +1,505 @@
+{
+ "library": "azure2",
+ "_comment": "Curated Azure seed shapes (draw.io azure2 icon paths) and boundary containers. Icons are superseded by Sidebar-Azure2.js when the catalogue is built from draw.io's definitions; boundary containers live in the separate 'azure_boundaries' seed so they are always kept.",
+ "entries": [
+  {
+   "name": "Virtual Machine",
+   "category": "Compute",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/compute/Virtual_Machine.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "vm",
+    "iaas",
+    "server"
+   ]
+  },
+  {
+   "name": "Virtual Machine Scale Sets",
+   "category": "Compute",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/compute/VM_Scale_Sets.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "vmss",
+    "autoscale"
+   ]
+  },
+  {
+   "name": "Function Apps",
+   "category": "Compute",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/compute/Function_Apps.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "azure functions",
+    "serverless"
+   ]
+  },
+  {
+   "name": "App Services",
+   "category": "App Services",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/app_services/App_Services.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "web app",
+    "app service",
+    "paas"
+   ]
+  },
+  {
+   "name": "App Service Plans",
+   "category": "App Services",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/app_services/App_Service_Plans.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "plan"
+   ]
+  },
+  {
+   "name": "Kubernetes Services",
+   "category": "Containers",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/containers/Kubernetes_Services.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "aks",
+    "kubernetes",
+    "k8s"
+   ]
+  },
+  {
+   "name": "Container Registries",
+   "category": "Containers",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/containers/Container_Registries.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "acr",
+    "registry",
+    "images"
+   ]
+  },
+  {
+   "name": "Container Instances",
+   "category": "Containers",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/containers/Container_Instances.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "aci"
+   ]
+  },
+  {
+   "name": "SQL Database",
+   "category": "Databases",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/databases/SQL_Database.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "azure sql",
+    "relational"
+   ]
+  },
+  {
+   "name": "Azure Cosmos DB",
+   "category": "Databases",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/databases/Azure_Cosmos_DB.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "cosmos",
+    "nosql",
+    "document db"
+   ]
+  },
+  {
+   "name": "Azure Database for PostgreSQL",
+   "category": "Databases",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/databases/Azure_Database_PostgreSQL_Server.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "postgres",
+    "postgresql"
+   ]
+  },
+  {
+   "name": "Azure Cache for Redis",
+   "category": "Databases",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/databases/Cache_Redis.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "redis",
+    "cache"
+   ]
+  },
+  {
+   "name": "Storage Accounts",
+   "category": "Storage",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/storage/Storage_Accounts.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "blob",
+    "storage",
+    "files",
+    "queue storage"
+   ]
+  },
+  {
+   "name": "Virtual Networks",
+   "category": "Networking",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/networking/Virtual_Networks.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "vnet",
+    "network"
+   ]
+  },
+  {
+   "name": "Application Gateways",
+   "category": "Networking",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/networking/Application_Gateways.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "app gateway",
+    "waf",
+    "l7"
+   ]
+  },
+  {
+   "name": "Load Balancers",
+   "category": "Networking",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/networking/Load_Balancers.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "lb",
+    "l4"
+   ]
+  },
+  {
+   "name": "Firewalls",
+   "category": "Networking",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/networking/Firewalls.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "azure firewall"
+   ]
+  },
+  {
+   "name": "Front Doors",
+   "category": "Networking",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/networking/Front_Doors.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "front door",
+    "cdn",
+    "waf",
+    "global entry"
+   ]
+  },
+  {
+   "name": "Private Link",
+   "category": "Networking",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/networking/Private_Link.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "private endpoint",
+    "privatelink"
+   ]
+  },
+  {
+   "name": "DNS Zones",
+   "category": "Networking",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/networking/DNS_Zones.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "dns",
+    "private dns"
+   ]
+  },
+  {
+   "name": "Network Security Groups",
+   "category": "Networking",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/networking/Network_Security_Groups.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "nsg"
+   ]
+  },
+  {
+   "name": "Virtual Network Gateways",
+   "category": "Networking",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/networking/Virtual_Network_Gateways.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "vpn gateway",
+    "expressroute gateway"
+   ]
+  },
+  {
+   "name": "Key Vaults",
+   "category": "Security",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/security/Key_Vaults.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "secrets",
+    "certificates",
+    "keys",
+    "hsm"
+   ]
+  },
+  {
+   "name": "Microsoft Sentinel",
+   "category": "Security",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/security/Azure_Sentinel.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "siem",
+    "soar"
+   ]
+  },
+  {
+   "name": "Microsoft Entra ID",
+   "category": "Identity",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/identity/Azure_Active_Directory.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "azure ad",
+    "aad",
+    "entra",
+    "identity provider",
+    "sso"
+   ]
+  },
+  {
+   "name": "Managed Identities",
+   "category": "Identity",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/identity/Managed_Identities.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "msi",
+    "workload identity"
+   ]
+  },
+  {
+   "name": "API Management Services",
+   "category": "Integration",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/integration/API_Management_Services.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "apim",
+    "api gateway"
+   ]
+  },
+  {
+   "name": "Service Bus",
+   "category": "Integration",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/integration/Service_Bus.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "queue",
+    "topic",
+    "messaging"
+   ]
+  },
+  {
+   "name": "Logic Apps",
+   "category": "Integration",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/integration/Logic_Apps.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "workflow",
+    "integration"
+   ]
+  },
+  {
+   "name": "Event Grid Topics",
+   "category": "Integration",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/integration/Event_Grid_Topics.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "event grid",
+    "events"
+   ]
+  },
+  {
+   "name": "Event Hubs",
+   "category": "Analytics",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/analytics/Event_Hubs.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "streaming",
+    "kafka",
+    "ingestion"
+   ]
+  },
+  {
+   "name": "Azure Synapse Analytics",
+   "category": "Analytics",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/analytics/Azure_Synapse_Analytics.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "synapse",
+    "data warehouse"
+   ]
+  },
+  {
+   "name": "Azure Databricks",
+   "category": "Analytics",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/analytics/Azure_Databricks.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "databricks",
+    "spark"
+   ]
+  },
+  {
+   "name": "Log Analytics Workspaces",
+   "category": "Analytics",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/analytics/Log_Analytics_Workspaces.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "logs",
+    "kql"
+   ]
+  },
+  {
+   "name": "Azure Monitor",
+   "category": "Management + Governance",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/management_governance/Monitor.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "monitoring",
+    "metrics",
+    "alerts"
+   ]
+  },
+  {
+   "name": "Application Insights",
+   "category": "DevOps",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/devops/Application_Insights.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "apm",
+    "telemetry"
+   ]
+  },
+  {
+   "name": "Azure DevOps",
+   "category": "DevOps",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/devops/Azure_DevOps.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "pipelines",
+    "ci cd",
+    "repos"
+   ]
+  },
+  {
+   "name": "Azure OpenAI",
+   "category": "AI + Machine Learning",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/ai_machine_learning/Azure_OpenAI.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "openai",
+    "gpt",
+    "llm",
+    "foundry"
+   ]
+  },
+  {
+   "name": "Cognitive Services",
+   "category": "AI + Machine Learning",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/ai_machine_learning/Cognitive_Services.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "ai services"
+   ]
+  },
+  {
+   "name": "Machine Learning",
+   "category": "AI + Machine Learning",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/ai_machine_learning/Machine_Learning.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "azure ml",
+    "aml"
+   ]
+  },
+  {
+   "name": "IoT Hub",
+   "category": "IoT",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/iot/IoT_Hub.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "devices",
+    "telemetry"
+   ]
+  },
+  {
+   "name": "Resource Groups",
+   "category": "General",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/general/Resource_Groups.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "rg"
+   ]
+  },
+  {
+   "name": "Subscriptions",
+   "category": "General",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/general/Subscriptions.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "subscription"
+   ]
+  },
+  {
+   "name": "Users",
+   "category": "Identity",
+   "style": "image;aspect=fixed;html=1;points=[];align=center;fontSize=12;verticalLabelPosition=bottom;verticalAlign=top;image=img/lib/azure2/identity/Users.svg;",
+   "width": 64,
+   "height": 64,
+   "keywords": [
+    "user",
+    "people",
+    "client"
+   ]
+  }
+ ]
+}

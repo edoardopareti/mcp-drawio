@@ -1,0 +1,683 @@
+{
+ "library": "archimate3",
+ "_comment": "Curated ArchiMate 3.x seed shapes (draw.io mxgraph.archimate3 styles). Superseded by Sidebar-ArchiMate3.js when the catalogue is built from draw.io's own definitions.",
+ "entries": [
+  {
+   "name": "Business Actor",
+   "category": "Business",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#ffff99;appType=actor;archiType=square;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "person",
+    "organization",
+    "department",
+    "customer"
+   ]
+  },
+  {
+   "name": "Business Role",
+   "category": "Business",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#ffff99;appType=role;archiType=square;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "responsibility",
+    "role"
+   ]
+  },
+  {
+   "name": "Business Collaboration",
+   "category": "Business",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#ffff99;appType=collab;archiType=square;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "team",
+    "partnership"
+   ]
+  },
+  {
+   "name": "Business Interface",
+   "category": "Business",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#ffff99;appType=interface;archiType=square;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "channel",
+    "portal",
+    "desk"
+   ]
+  },
+  {
+   "name": "Business Process",
+   "category": "Business",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#ffff99;appType=proc;archiType=rounded;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "workflow",
+    "activity",
+    "procedure"
+   ]
+  },
+  {
+   "name": "Business Function",
+   "category": "Business",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#ffff99;appType=func;archiType=rounded;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "capability area",
+    "function"
+   ]
+  },
+  {
+   "name": "Business Interaction",
+   "category": "Business",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#ffff99;appType=interaction;archiType=rounded;",
+   "width": 150,
+   "height": 75,
+   "keywords": []
+  },
+  {
+   "name": "Business Event",
+   "category": "Business",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#ffff99;appType=event;archiType=rounded;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "trigger",
+    "occurrence"
+   ]
+  },
+  {
+   "name": "Business Service",
+   "category": "Business",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#ffff99;appType=serv;archiType=rounded;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "service offered"
+   ]
+  },
+  {
+   "name": "Business Object",
+   "category": "Business",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;fillColor=#ffff99;shape=mxgraph.archimate3.businessObject;overflow=fill;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "information",
+    "document",
+    "entity"
+   ]
+  },
+  {
+   "name": "Contract",
+   "category": "Business",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;fillColor=#ffff99;shape=mxgraph.archimate3.contract;overflow=fill;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "agreement",
+    "sla"
+   ]
+  },
+  {
+   "name": "Representation",
+   "category": "Business",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;fillColor=#ffff99;shape=mxgraph.archimate3.representation;overflow=fill;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "form",
+    "report",
+    "message"
+   ]
+  },
+  {
+   "name": "Product",
+   "category": "Business",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;fillColor=#ffff99;shape=mxgraph.archimate3.product;overflow=fill;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "offering"
+   ]
+  },
+  {
+   "name": "Application Component",
+   "category": "Application",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#99ffff;appType=comp;archiType=square;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "application",
+    "system",
+    "module",
+    "microservice",
+    "app"
+   ]
+  },
+  {
+   "name": "Application Collaboration",
+   "category": "Application",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#99ffff;appType=collab;archiType=square;",
+   "width": 150,
+   "height": 75,
+   "keywords": []
+  },
+  {
+   "name": "Application Interface",
+   "category": "Application",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#99ffff;appType=interface;archiType=square;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "api",
+    "ui",
+    "endpoint"
+   ]
+  },
+  {
+   "name": "Application Function",
+   "category": "Application",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#99ffff;appType=func;archiType=rounded;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "functionality"
+   ]
+  },
+  {
+   "name": "Application Interaction",
+   "category": "Application",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#99ffff;appType=interaction;archiType=rounded;",
+   "width": 150,
+   "height": 75,
+   "keywords": []
+  },
+  {
+   "name": "Application Process",
+   "category": "Application",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#99ffff;appType=proc;archiType=rounded;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "automated process",
+    "batch"
+   ]
+  },
+  {
+   "name": "Application Event",
+   "category": "Application",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#99ffff;appType=event;archiType=rounded;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "message received",
+    "timer"
+   ]
+  },
+  {
+   "name": "Application Service",
+   "category": "Application",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#99ffff;appType=serv;archiType=rounded;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "api service",
+    "exposed functionality"
+   ]
+  },
+  {
+   "name": "Data Object",
+   "category": "Application",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;fillColor=#99ffff;shape=mxgraph.archimate3.businessObject;overflow=fill;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "data",
+    "table",
+    "dataset",
+    "record"
+   ]
+  },
+  {
+   "name": "Node",
+   "category": "Technology",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#AFFFAF;appType=node;archiType=square;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "server",
+    "host",
+    "cluster",
+    "computational resource"
+   ]
+  },
+  {
+   "name": "Device",
+   "category": "Technology",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#AFFFAF;appType=device;archiType=square;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "hardware",
+    "laptop",
+    "mobile",
+    "sensor"
+   ]
+  },
+  {
+   "name": "System Software",
+   "category": "Technology",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#AFFFAF;appType=sysSw;archiType=square;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "os",
+    "database management system",
+    "middleware",
+    "runtime"
+   ]
+  },
+  {
+   "name": "Technology Collaboration",
+   "category": "Technology",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#AFFFAF;appType=collab;archiType=square;",
+   "width": 150,
+   "height": 75,
+   "keywords": []
+  },
+  {
+   "name": "Technology Interface",
+   "category": "Technology",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#AFFFAF;appType=interface;archiType=square;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "port",
+    "protocol endpoint"
+   ]
+  },
+  {
+   "name": "Path",
+   "category": "Technology",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#AFFFAF;appType=path;archiType=square;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "link",
+    "channel"
+   ]
+  },
+  {
+   "name": "Communication Network",
+   "category": "Technology",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#AFFFAF;appType=netw;archiType=square;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "network",
+    "lan",
+    "wan",
+    "vpn"
+   ]
+  },
+  {
+   "name": "Technology Function",
+   "category": "Technology",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#AFFFAF;appType=func;archiType=rounded;",
+   "width": 150,
+   "height": 75,
+   "keywords": []
+  },
+  {
+   "name": "Technology Process",
+   "category": "Technology",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#AFFFAF;appType=proc;archiType=rounded;",
+   "width": 150,
+   "height": 75,
+   "keywords": []
+  },
+  {
+   "name": "Technology Interaction",
+   "category": "Technology",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#AFFFAF;appType=interaction;archiType=rounded;",
+   "width": 150,
+   "height": 75,
+   "keywords": []
+  },
+  {
+   "name": "Technology Event",
+   "category": "Technology",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#AFFFAF;appType=event;archiType=rounded;",
+   "width": 150,
+   "height": 75,
+   "keywords": []
+  },
+  {
+   "name": "Technology Service",
+   "category": "Technology",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#AFFFAF;appType=serv;archiType=rounded;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "platform service",
+    "hosting",
+    "storage service"
+   ]
+  },
+  {
+   "name": "Artifact",
+   "category": "Technology",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#AFFFAF;appType=artifact;archiType=square;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "file",
+    "binary",
+    "package",
+    "deployable",
+    "jar",
+    "container image"
+   ]
+  },
+  {
+   "name": "Equipment",
+   "category": "Physical",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#AFFFAF;appType=equipment;archiType=square;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "machine",
+    "physical equipment"
+   ]
+  },
+  {
+   "name": "Facility",
+   "category": "Physical",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#AFFFAF;appType=facility;archiType=square;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "building",
+    "factory",
+    "data center"
+   ]
+  },
+  {
+   "name": "Distribution Network",
+   "category": "Physical",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#AFFFAF;appType=distribution;archiType=square;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "transport",
+    "logistics",
+    "pipeline"
+   ]
+  },
+  {
+   "name": "Material",
+   "category": "Physical",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#AFFFAF;appType=material;archiType=square;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "raw material",
+    "physical matter"
+   ]
+  },
+  {
+   "name": "Stakeholder",
+   "category": "Motivation",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#CCCCFF;appType=role;archiType=oct;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "interest",
+    "concern"
+   ]
+  },
+  {
+   "name": "Driver",
+   "category": "Motivation",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#CCCCFF;appType=driver;archiType=oct;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "motivation",
+    "regulation",
+    "compliance"
+   ]
+  },
+  {
+   "name": "Assessment",
+   "category": "Motivation",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#CCCCFF;appType=assess;archiType=oct;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "analysis",
+    "swot",
+    "finding"
+   ]
+  },
+  {
+   "name": "Goal",
+   "category": "Motivation",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#CCCCFF;appType=goal;archiType=oct;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "objective",
+    "aim"
+   ]
+  },
+  {
+   "name": "Outcome",
+   "category": "Motivation",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#CCCCFF;appType=outcome;archiType=oct;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "result",
+    "end result"
+   ]
+  },
+  {
+   "name": "Principle",
+   "category": "Motivation",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#CCCCFF;appType=principle;archiType=oct;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "guideline",
+    "rule"
+   ]
+  },
+  {
+   "name": "Requirement",
+   "category": "Motivation",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#CCCCFF;appType=requirement;archiType=oct;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "need",
+    "control",
+    "nis2"
+   ]
+  },
+  {
+   "name": "Constraint",
+   "category": "Motivation",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#CCCCFF;appType=constraint;archiType=oct;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "limitation",
+    "restriction"
+   ]
+  },
+  {
+   "name": "Meaning",
+   "category": "Motivation",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#CCCCFF;appType=meaning;archiType=oct;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "interpretation"
+   ]
+  },
+  {
+   "name": "Value",
+   "category": "Motivation",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#CCCCFF;appType=value;archiType=oct;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "benefit",
+    "worth"
+   ]
+  },
+  {
+   "name": "Resource",
+   "category": "Strategy",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#F5DEAA;appType=resource;archiType=square;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "asset",
+    "budget",
+    "people"
+   ]
+  },
+  {
+   "name": "Capability",
+   "category": "Strategy",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#F5DEAA;appType=capability;archiType=rounded;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "ability",
+    "business capability"
+   ]
+  },
+  {
+   "name": "Value Stream",
+   "category": "Strategy",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#F5DEAA;appType=valueStream;archiType=rounded;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "value chain",
+    "stage"
+   ]
+  },
+  {
+   "name": "Course of Action",
+   "category": "Strategy",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#F5DEAA;appType=course;archiType=rounded;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "strategy",
+    "approach",
+    "plan"
+   ]
+  },
+  {
+   "name": "Work Package",
+   "category": "Implementation & Migration",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#FFE0E0;appType=workPackage;archiType=rounded;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "project",
+    "task",
+    "initiative"
+   ]
+  },
+  {
+   "name": "Deliverable",
+   "category": "Implementation & Migration",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;fillColor=#FFE0E0;shape=mxgraph.archimate3.deliverable;overflow=fill;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "output",
+    "result document"
+   ]
+  },
+  {
+   "name": "Implementation Event",
+   "category": "Implementation & Migration",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#FFE0E0;appType=event;archiType=rounded;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "milestone"
+   ]
+  },
+  {
+   "name": "Plateau",
+   "category": "Implementation & Migration",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#E0FFE0;appType=plateau;archiType=square;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "baseline",
+    "target state",
+    "transition"
+   ]
+  },
+  {
+   "name": "Gap",
+   "category": "Implementation & Migration",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#E0FFE0;appType=gap;archiType=square;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "difference"
+   ]
+  },
+  {
+   "name": "Location",
+   "category": "Other",
+   "style": "html=1;outlineConnect=0;whiteSpace=wrap;shape=mxgraph.archimate3.application;fillColor=#FBB875;appType=location;archiType=square;",
+   "width": 150,
+   "height": 75,
+   "keywords": [
+    "place",
+    "site",
+    "region",
+    "country"
+   ]
+  },
+  {
+   "name": "Junction (And)",
+   "category": "Other",
+   "style": "ellipse;html=1;fillColor=#000000;strokeColor=#000000;aspect=fixed;",
+   "width": 14,
+   "height": 14,
+   "keywords": [
+    "and junction",
+    "join",
+    "split"
+   ]
+  },
+  {
+   "name": "Junction (Or)",
+   "category": "Other",
+   "style": "ellipse;html=1;fillColor=#ffffff;strokeColor=#000000;aspect=fixed;",
+   "width": 14,
+   "height": 14,
+   "keywords": [
+    "or junction"
+   ]
+  }
+ ]
+}

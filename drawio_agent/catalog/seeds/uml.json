@@ -1,0 +1,315 @@
+{
+ "library": "uml",
+ "_comment": "Curated UML seed shapes. Class-like shapes use label_format 'compartments': separate compartments with a line containing only '--'.",
+ "entries": [
+  {
+   "name": "Class",
+   "category": "Class",
+   "style": "html=1;whiteSpace=wrap;verticalAlign=top;align=left;overflow=fill;spacing=0;fontSize=12;fillColor=#ffffff;",
+   "width": 180,
+   "height": 90,
+   "label_format": "compartments",
+   "keywords": [
+    "entity",
+    "type",
+    "attributes",
+    "operations"
+   ]
+  },
+  {
+   "name": "Abstract Class",
+   "category": "Class",
+   "style": "html=1;whiteSpace=wrap;verticalAlign=top;align=left;overflow=fill;spacing=0;fontSize=12;fillColor=#ffffff;fontStyle=2;",
+   "width": 180,
+   "height": 90,
+   "label_format": "compartments",
+   "keywords": [
+    "abstract"
+   ]
+  },
+  {
+   "name": "Interface",
+   "category": "Class",
+   "style": "html=1;whiteSpace=wrap;verticalAlign=top;align=left;overflow=fill;spacing=0;fontSize=12;fillColor=#f5f5f5;",
+   "width": 180,
+   "height": 80,
+   "label_format": "compartments",
+   "keywords": [
+    "interface",
+    "contract",
+    "protocol"
+   ]
+  },
+  {
+   "name": "Enumeration",
+   "category": "Class",
+   "style": "html=1;whiteSpace=wrap;verticalAlign=top;align=left;overflow=fill;spacing=0;fontSize=12;fillColor=#fff8e6;",
+   "width": 160,
+   "height": 80,
+   "label_format": "compartments",
+   "keywords": [
+    "enum",
+    "literals"
+   ]
+  },
+  {
+   "name": "Data Type",
+   "category": "Class",
+   "style": "html=1;whiteSpace=wrap;verticalAlign=top;align=left;overflow=fill;spacing=0;fontSize=12;fillColor=#ffffff;",
+   "width": 160,
+   "height": 70,
+   "label_format": "compartments",
+   "keywords": [
+    "datatype",
+    "value object"
+   ]
+  },
+  {
+   "name": "Object",
+   "category": "Object",
+   "style": "html=1;whiteSpace=wrap;fontStyle=4;",
+   "width": 160,
+   "height": 50,
+   "keywords": [
+    "instance"
+   ]
+  },
+  {
+   "name": "Component",
+   "category": "Component",
+   "style": "html=1;whiteSpace=wrap;shape=component;align=left;spacingLeft=36;",
+   "width": 180,
+   "height": 60,
+   "keywords": [
+    "module",
+    "service",
+    "subsystem"
+   ]
+  },
+  {
+   "name": "Provided Interface",
+   "category": "Component",
+   "style": "html=1;shape=lollipop;direction=north;",
+   "width": 10,
+   "height": 30,
+   "keywords": [
+    "lollipop",
+    "port"
+   ]
+  },
+  {
+   "name": "Port",
+   "category": "Component",
+   "style": "html=1;rounded=0;fillColor=#ffffff;",
+   "width": 16,
+   "height": 16,
+   "keywords": []
+  },
+  {
+   "name": "Deployment Node",
+   "category": "Deployment",
+   "style": "html=1;whiteSpace=wrap;shape=cube;size=10;direction=south;verticalAlign=top;align=left;spacingLeft=8;spacingTop=10;boundedLbl=1;fontStyle=1;",
+   "width": 180,
+   "height": 90,
+   "keywords": [
+    "node",
+    "server",
+    "execution environment",
+    "device"
+   ]
+  },
+  {
+   "name": "Artifact",
+   "category": "Deployment",
+   "style": "html=1;whiteSpace=wrap;shape=note;size=14;",
+   "width": 150,
+   "height": 60,
+   "keywords": [
+    "file",
+    "jar",
+    "deployable",
+    "binary"
+   ]
+  },
+  {
+   "name": "Actor",
+   "category": "Use Case",
+   "style": "shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;",
+   "width": 30,
+   "height": 60,
+   "keywords": [
+    "user",
+    "role",
+    "person",
+    "external system"
+   ]
+  },
+  {
+   "name": "Use Case",
+   "category": "Use Case",
+   "style": "ellipse;whiteSpace=wrap;html=1;",
+   "width": 160,
+   "height": 70,
+   "keywords": [
+    "scenario",
+    "goal",
+    "feature"
+   ]
+  },
+  {
+   "name": "Action",
+   "category": "Activity",
+   "style": "rounded=1;arcSize=30;whiteSpace=wrap;html=1;",
+   "width": 150,
+   "height": 50,
+   "keywords": [
+    "activity",
+    "step",
+    "task"
+   ]
+  },
+  {
+   "name": "Decision",
+   "category": "Activity",
+   "style": "rhombus;whiteSpace=wrap;html=1;",
+   "width": 40,
+   "height": 40,
+   "keywords": [
+    "merge",
+    "branch",
+    "choice"
+   ]
+  },
+  {
+   "name": "Initial Node",
+   "category": "Activity",
+   "style": "ellipse;html=1;fillColor=#000000;strokeColor=#000000;aspect=fixed;",
+   "width": 24,
+   "height": 24,
+   "keywords": [
+    "start",
+    "initial state"
+   ]
+  },
+  {
+   "name": "Final Node",
+   "category": "Activity",
+   "style": "ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#000000;aspect=fixed;",
+   "width": 26,
+   "height": 26,
+   "keywords": [
+    "end",
+    "final state",
+    "stop"
+   ]
+  },
+  {
+   "name": "Fork Join",
+   "category": "Activity",
+   "style": "html=1;rounded=0;fillColor=#000000;strokeColor=none;",
+   "width": 120,
+   "height": 6,
+   "keywords": [
+    "fork",
+    "join",
+    "parallel",
+    "synchronization bar"
+   ]
+  },
+  {
+   "name": "Send Signal",
+   "category": "Activity",
+   "style": "html=1;shape=mxgraph.sysml.sendSigAct;whiteSpace=wrap;",
+   "width": 150,
+   "height": 50,
+   "keywords": [
+    "signal",
+    "send"
+   ]
+  },
+  {
+   "name": "State",
+   "category": "State Machine",
+   "style": "rounded=1;arcSize=40;whiteSpace=wrap;html=1;fillColor=#ffffff;",
+   "width": 150,
+   "height": 50,
+   "keywords": [
+    "status",
+    "mode"
+   ]
+  },
+  {
+   "name": "Choice",
+   "category": "State Machine",
+   "style": "rhombus;whiteSpace=wrap;html=1;",
+   "width": 30,
+   "height": 30,
+   "keywords": [
+    "choice pseudostate"
+   ]
+  },
+  {
+   "name": "Note",
+   "category": "General",
+   "style": "shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=14;verticalAlign=top;align=left;spacingLeft=6;",
+   "width": 180,
+   "height": 60,
+   "keywords": [
+    "comment",
+    "constraint",
+    "annotation"
+   ]
+  },
+  {
+   "name": "Package",
+   "category": "General",
+   "element_type": "container",
+   "style": "shape=folder;fontStyle=1;spacingTop=10;tabWidth=60;tabHeight=18;tabPosition=left;html=1;whiteSpace=wrap;verticalAlign=top;align=left;spacingLeft=8;container=1;collapsible=0;",
+   "width": 400,
+   "height": 250,
+   "keywords": [
+    "namespace",
+    "module",
+    "folder"
+   ]
+  },
+  {
+   "name": "System Boundary",
+   "category": "Use Case",
+   "element_type": "container",
+   "style": "html=1;rounded=0;whiteSpace=wrap;verticalAlign=top;fontStyle=1;fillColor=none;container=1;collapsible=0;",
+   "width": 400,
+   "height": 300,
+   "keywords": [
+    "subject",
+    "system",
+    "boundary"
+   ]
+  },
+  {
+   "name": "Component Container",
+   "category": "Component",
+   "element_type": "container",
+   "style": "html=1;whiteSpace=wrap;shape=component;align=left;verticalAlign=top;spacingLeft=36;fontStyle=1;container=1;collapsible=0;",
+   "width": 400,
+   "height": 250,
+   "keywords": [
+    "composite component",
+    "subsystem"
+   ]
+  },
+  {
+   "name": "Deployment Node Container",
+   "category": "Deployment",
+   "element_type": "container",
+   "style": "html=1;whiteSpace=wrap;shape=cube;size=10;direction=south;verticalAlign=top;align=left;spacingLeft=8;spacingTop=10;boundedLbl=1;fontStyle=1;container=1;collapsible=0;",
+   "width": 400,
+   "height": 250,
+   "keywords": [
+    "node",
+    "server",
+    "execution environment"
+   ]
+  }
+ ]
+}

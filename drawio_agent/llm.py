@@ -13,7 +13,8 @@ def create_llm_client(cfg: Config):
         if cfg.azure_use_entra_id:
             from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
-            token_provider = get_bearer_token_provider(DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
+            token_provider = get_bearer_token_provider(
+                DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
             client = AzureOpenAI(azure_endpoint=cfg.azure_endpoint, azure_ad_token_provider=token_provider,
                                  api_version=cfg.azure_api_version)
         else:

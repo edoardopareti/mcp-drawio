@@ -21,6 +21,10 @@ def _float_or_none(value: str | None) -> float | None:
     return float(value)
 
 
+def _path_or_none(value: str | None) -> Path | None:
+    return Path(value).expanduser() if value and value.strip() else None
+
+
 @dataclass
 class Config:
     llm_provider: str = "azure"
@@ -36,6 +40,8 @@ class Config:
     max_tool_rounds: int = 12
     workspace: Path = field(default_factory=lambda: Path("./diagrams"))
     import_dirs: list[Path] = field(default_factory=list)
+    shape_catalog: Path | None = None
+    notations_dir: Path | None = None
     mcp_server_url: str | None = None
 
 
@@ -59,5 +65,7 @@ def load_config() -> Config:
         max_tool_rounds=int(env("MAX_TOOL_ROUNDS") or 12),
         workspace=Path(env("DRAWIO_WORKSPACE") or "./diagrams").expanduser(),
         import_dirs=import_dirs,
+        shape_catalog=_path_or_none(env("SHAPE_CATALOG")) or PROJECT_ROOT / "catalog" / "shapes.json",
+        notations_dir=_path_or_none(env("NOTATIONS_DIR")),
         mcp_server_url=env("MCP_SERVER_URL") or None,
     )
